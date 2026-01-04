@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checklist PRESTO</title>
+
+<style>
+body{font-family:Arial;background:#f5f5f5;margin:0}
+.container{max-width:1050px;margin:20px auto;background:#fff;
+padding:18px 20px 40px;border-radius:14px}
+.section{border:1px solid #ddd;border-radius:10px;padding:10px;margin:12px 0}
+h1{text-align:center}
+h3{margin:6px 0}
+label{display:block;margin:4px 0}
+textarea{width:100%;min-height:80px}
+button{padding:10px 20px;background:#0d6efd;color:white;border:0;border-radius:8px;font-size:15px;cursor:pointer}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:4px 12px}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>CHECKLIST DIARIO DE CALIDAD E INOCUIDAD</h1>
+<p style="text-align:center;">UNIDADES MÓVILES DE TRANSPORTE – PRESTO</p>
+
+<form id="formChecklist">
+
+<!-- Responsable -->
+<div class="section">
+<h3>Responsable de llenado</h3>
+<label>Chofer de la unidad: <input name="chofer" required></label>
+</div>
+
+<!-- IDENTIFICACION -->
+<div class="section">
+<h3>1. IDENTIFICACIÓN</h3>
+<label>Fecha: <input type="date" name="fecha" required></label>
+<label>Hora: <input type="time" name="hora" required></label>
+<label>Placa de la unidad: <input name="placa" required></label>
+<label>Ruta (Planta / Tienda): <input name="ruta" required></label>
+<label>Firma: <input name="firma"></label>
+</div>
+
+<!-- ANTES DE CARGA -->
+<div class="section">
+<h3>2. REVISIÓN ANTES DE LA CARGA (PLANTA)</h3>
+
+<strong>A. Sistema de Refrigeración y Cadena de Frío</strong>
+<div class="grid">
+<label><input type="checkbox" name="a1"> Sistema operativo y encendido</label>
+<label><input type="checkbox" name="a2"> Termómetro limpio</label>
+<label><input type="checkbox" name="a3"> Sin goteos / óxido / escarcha</label>
+<label><input type="checkbox" name="a4"> Cortinas limpias e íntegras</label>
+</div>
+
+<strong>B. Condiciones del Vehículo (Interior)</strong>
+<div class="grid">
+<label><input type="checkbox" name="b1"> Piso / paredes / techo limpios</label>
+<label><input type="checkbox" name="b2"> Sin olores extraños</label>
+<label><input type="checkbox" name="b3"> Sin cuerpos extraños</label>
+<label><input type="checkbox" name="b4"> Sin plagas o indicios</label>
+</div>
+
+<strong>C. Equipos y Utensilios</strong>
+<div class="grid">
+<label><input type="checkbox" name="c1"> Jabas y contenedores limpios</label>
+<label><input type="checkbox" name="c2"> Carros sin óxido ni roturas</label>
+<label><input type="checkbox" name="c3"> Productos no tocan el piso</label>
+</div>
+</div>
+
+<!-- CARGA -->
+<div class="section">
+<h3>3. CARGA DE PRODUCTOS</h3>
+<div class="grid">
+<label><input type="checkbox" name="d1"> Productos íntegros y rotulados</label>
+<label><input type="checkbox" name="d2"> Estiba ordenada</label>
+<label><input type="checkbox" name="d3"> Sin contaminación cruzada</label>
+<label><input type="checkbox" name="d4"> Puertas cerradas al cargar</label>
+<label><input type="checkbox" name="d5"> Frío encendido durante carga</label>
+</div>
+</div>
+
+<!-- TRANSPORTE -->
+<div class="section">
+<h3>4. DURANTE EL TRANSPORTE</h3>
+<div class="grid">
+<label><input type="checkbox" name="e1"> Refrigeración encendida</label>
+<label><input type="checkbox" name="e2"> Temperatura 0 - 6 °C</label>
+<label><input type="checkbox" name="e3"> No abrir innecesariamente</label>
+<label><input type="checkbox" name="e4"> No hay objetos ajenos</label>
+<label><input type="checkbox" name="e5"> No se come dentro</label>
+</div>
+</div>
+
+<!-- DESCARGA -->
+<div class="section">
+<h3>5. DESCARGA EN TIENDA</h3>
+<div class="grid">
+<label><input type="checkbox" name="f1"> Temp. verificada en cabina</label>
+<label><input type="checkbox" name="f2"> Productos íntegros</label>
+<label><input type="checkbox" name="f3"> Descarga rápida</label>
+<label><input type="checkbox" name="f4"> Uso correcto de jabas</label>
+<label><input type="checkbox" name="f5"> Zona limpia</label>
+<label><input type="checkbox" name="f6"> Retorno ordenado</label>
+</div>
+</div>
+
+<!-- CHOFER -->
+<div class="section">
+<h3>6. HIGIENE Y PRESENTACIÓN DEL CHOFER</h3>
+<div class="grid">
+<label><input type="checkbox" name="g1"> Uniforme limpio</label>
+<label><input type="checkbox" name="g2"> Manos limpias</label>
+<label><input type="checkbox" name="g3"> Uso de EPP</label>
+<label><input type="checkbox" name="g4"> Sin joyas / objetos</label>
+<label><input type="checkbox" name="g5"> Sin heridas expuestas</label>
+</div>
+</div>
+
+<!-- DESVIACIONES -->
+<div class="section">
+<h3>7. ACCIONES ANTE DESVIACIONES</h3>
+<div class="grid">
+<label><input type="checkbox" name="h1"> Reporto desviación de temperatura</label>
+<label><input type="checkbox" name="h2"> Reporto incumplimientos</label>
+<label><input type="checkbox" name="h3"> Detuve carga si hubo riesgo</label>
+<label><input type="checkbox" name="h4"> Informé a logística/calidad</label>
+</div>
+
+<label>Observaciones / incidencias:</label>
+<textarea name="obs"></textarea>
+</div>
+
+<!-- CIERRE -->
+<div class="section">
+<h3>8. CIERRE DE JORNADA</h3>
+<div class="grid">
+<label><input type="checkbox" name="i1"> Unidad descargada</label>
+<label><input type="checkbox" name="i2"> Limpieza realizada</label>
+<label><input type="checkbox" name="i3"> Registros completos</label>
+<label><input type="checkbox" name="i4"> Unidad lista</label>
+</div>
+
+<label>Firma del chofer: <input name="firma_final"></label>
+</div>
+
+<button type="submit">Enviar checklist</button>
+<p id="msg"></p>
+
+</form>
+</div>
+
+<!-- jsPDF -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<!-- EmailJS -->
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
+<script>
+emailjs.init("cgQJDKNZ_1-GU3gjn");
+
+const form = document.getElementById("formChecklist");
+const msg  = document.getElementById("msg");
+
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  msg.innerText = "Generando PDF y enviando...";
+
+  try {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+
+    doc.text("Checklist PRESTO", 10, 10);
+    doc.text("Chofer: " + form.chofer.value, 10, 18);
+    doc.text("Fecha: " + form.fecha.value, 10, 26);
+    doc.text("Ruta: " + form.ruta.value, 10, 34);
+
+    const pdfBase64 = doc.output("datauristring");
+
+    await emailjs.send(
+      "service_080dahx",
+      "template_c75mjnk",
+      {
+        to_email: "ediaz@pizzeriaspresto.com",
+        chofer: form.chofer.value,
+        fecha: form.fecha.value,
+        ruta: form.ruta.value,
+        mensaje: "Checklist enviado automáticamente",
+        attachment: pdfBase64
+      }
+    );
+
+    msg.innerText = "Checklist enviado correctamente ✔️";
+    form.reset();
+
+  } catch (err) {
+    msg.innerText = "Error al enviar";
+    console.log(err);
+  }
+});
+</script>
+
+</body>
+</html>
