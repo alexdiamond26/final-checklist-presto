@@ -154,47 +154,43 @@ button{padding:10px 20px;background:#0d6efd;color:white;border:0;border-radius:8
 </form>
 </div>
 
-<!-- jsPDF -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-
-<!-- EmailJS -->
-<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
-
 <script>
-emailjs.init("cgQJDKNZ_1-GU3gjn");
-
 const form = document.getElementById("formChecklist");
 const msg  = document.getElementById("msg");
 
+// TU URL DE GOOGLE SCRIPT
+const API_URL = "https://script.google.com/macros/s/AKfycbzVxc9Hdphsn8ATJWz5ut5oFJBy90NW-uvBhMe6S8OkRLGT78XFWX1SQfli7kMQj6LX/exec";
+
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
-  msg.innerText = "Generando PDF y enviando...";
+  msg.innerText = "Enviando checklist...";
+
+  // HTML para el PDF / correo
+  const html = `
+    <h2>Checklist PRESTO</h2>
+    <p><b>Chofer:</b> ${form.chofer.value}</p>
+    <p><b>Fecha:</b> ${form.fecha.value}</p>
+    <p><b>Ruta:</b> ${form.ruta.value}</p>
+    <p><b>Placa:</b> ${form.placa.value}</p>
+    <hr>
+    <p><b>Observaciones:</b><br>${form.obs.value || ""}</p>
+  `;
+
+  const data = {
+    fecha: form.fecha.value,
+    chofer: form.chofer.value,
+    ruta: form.ruta.value,
+    html: html
+  };
 
   try {
-    const { jsPDF } = window.jspdf;
-    const doc = new jsPDF();
+    await fetch(API_URL, {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: { "Content-Type": "application/json" }
+    });
 
-    doc.text("Checklist PRESTO", 10, 10);
-    doc.text("Chofer: " + form.chofer.value, 10, 18);
-    doc.text("Fecha: " + form.fecha.value, 10, 26);
-    doc.text("Ruta: " + form.ruta.value, 10, 34);
-
-    const pdfBase64 = doc.output("datauristring");
-
-    await emailjs.send(
-      "service_080dahx",
-      "template_c75mjnk",
-      {
-        to_email: "ediaz@pizzeriaspresto.com",
-        chofer: form.chofer.value,
-        fecha: form.fecha.value,
-        ruta: form.ruta.value,
-        mensaje: "Checklist enviado automáticamente",
-        attachment: pdfBase64
-      }
-    );
-
-    msg.innerText = "Checklist enviado correctamente ✔️";
+    msg.innerText = "Checklist enviado con PDF ✔️";
     form.reset();
 
   } catch (err) {
